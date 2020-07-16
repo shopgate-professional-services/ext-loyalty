@@ -1,5 +1,17 @@
 {
   "ps_loyalty": {
-
+    "loyalty_card": {
+      "title": "Loyalty card"
+    },
+    "coupon": {
+      "title": "Coupon"
+    },
+    "history": {
+      "title": "History"
+    },
+    "scanner": {
+      "invalid_format": "Invalid format. Please scan a valid Barcode",
+      "not_supported": "Please update your app to use the scanner feature"
+    }
   }
 }
