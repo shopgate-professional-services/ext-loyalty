@@ -1,0 +1,101 @@
+{
+  "version": "1.0.0-rc.1",
+  "id": "@shopgate-project/loyalty",
+  "components": [
+    {
+      "type": "translations",
+      "path": "frontend/locale/de-DE.json",
+      "id": "locale/de-DE"
+    },
+    {
+      "type": "translations",
+      "path": "frontend/locale/en-US.json",
+      "id": "locale/en-US"
+    },
+    {
+      "id": "TabBarItem",
+      "path": "frontend/portals/TabBarItem/index.jsx",
+      "target": "tab-bar.cart.after",
+      "type": "portals"
+    },
+    {
+      "id": "LoyaltyLinkGmd",
+      "path": "frontend/portals/LoyaltyLinkGmd",
+      "target": "nav-menu.home.before",
+      "type": "portals"
+    },
+    {
+      "id": "LoyaltyLinkIos",
+      "path": "frontend/portals/LoyaltyLinkIos",
+      "target": "nav-menu.logout.before",
+      "type": "portals"
+    },
+    {
+      "id": "Loyalty",
+      "path": "frontend/pages/Loyalty/index.jsx",
+      "target": "app.routes",
+      "type": "portals"
+    },
+    {
+      "id": "LoyaltyHistory",
+      "path": "frontend/pages/History/index.jsx",
+      "target": "app.routes",
+      "type": "portals"
+    },
+    {
+      "id": "LoyaltyCoupons",
+      "path": "frontend/pages/Coupons/index.jsx",
+      "target": "app.routes",
+      "type": "portals"
+    },
+    {
+      "id": "Subscribers",
+      "path": "frontend/subscriptions.js",
+      "type": "subscribers"
+    },
+    {
+      "id": "loyalty",
+      "path": "frontend/reducers.js",
+      "type": "reducers"
+    }
+  ],
+  "configuration": {
+    "icon": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "<path d=\"M0,0H24V24H0Z\" fill=\"none\" /><path fill=\"currentColor\" d=\"M20,2H4A2,2,0,0,0,2,4H2V15a2,2,0,0,0,2,2H8v5l4-2,4,2V17h4a2,2,0,0,0,2-2h0V4a2,2,0,0,0-2-2Zm0,13H4V13H20Zm0-5H4V4H20Z\" />",
+      "params": {
+        "type": "text",
+        "label": "The icon for TabBar/NavDrawer"
+      }
+    },
+    "barcodeFormat": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "CODE128",
+      "params": {
+        "type": "text",
+        "label": "The format of the barcode eg. CODE128"
+      }
+    },
+    "showQrCodeInstead": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": false,
+      "params": {
+        "type": "checkbox",
+        "label": "Shows a QR code instead of a Barcode"
+      }
+    },
+    "addTabBarItem": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": true,
+      "params": {
+        "type": "checkbox",
+        "label": "Adds loyalty link to TabBar"
+      }
+    }
+  },
+  "steps": []
+}

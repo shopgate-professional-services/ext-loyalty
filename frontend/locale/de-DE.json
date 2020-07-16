@@ -1,0 +1,17 @@
+{
+  "ps_loyalty": {
+    "loyalty_card": {
+      "title": "Treuekarte"
+    },
+    "coupon": {
+      "title": "Gutscheine"
+    },
+    "history": {
+      "title": "Historie"
+    },
+    "scanner": {
+      "invalid_format": "Ungültiges Format. Bitte scannen Sie einen validen Barcode.",
+      "not_supported": "Um den Kartenscanner zu benutzen, müssen Sie Ihre App aktualisieren."
+    }
+  }
+}
