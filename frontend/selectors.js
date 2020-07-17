@@ -7,7 +7,7 @@ const REDUCER_KEY = '@shopgate-project/loyalty/loyalty';
  * @param {Object} state State.
  * @returns {Object}
  */
-export const getExtensionsState = state => {
+export const getExtensionsState = (state) => {
   if (!state.extensions[REDUCER_KEY]) {
     return {};
   }
