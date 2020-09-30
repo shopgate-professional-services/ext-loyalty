@@ -1,20 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import Barcode from 'react-barcode';
 import QRCode from 'qrcode.react';
-import { Route } from '@shopgate/pwa-common/components';
-import { useTheme } from '@shopgate/engage/core';
-import { Link } from '@shopgate/engage/components';
-import SurroundPortals from '@shopgate/pwa-common/components/SurroundPortals';
+import { Route, Link, SurroundPortals } from '@shopgate/engage/components';
+import { useTheme, i18n } from '@shopgate/engage/core';
 import {
-  LOYALTY_COUPONS_ROUTE,
-  LOYALTY_HISTORY_ROUTE,
-  LOYALTY_ROUTE,
-  SCANNER_ROUTE,
+  LOYALTY_COUPONS_ROUTE, LOYALTY_POINTS_HISTORY_ROUTE, LOYALTY_ROUTE, SCANNER_ROUTE,
 } from '../../constants';
-import connect from './connector';
 import { barcodeFormat, showQrCodeInstead } from '../../config';
+import { withFetchAccount } from '../../hocs';
 
 const styles = {
   container: css({
@@ -25,12 +20,14 @@ const styles = {
 /**
  * @returns {JSX}
  */
-const LoyaltyRoute = ({ accountInfo }) => {
+const Account = ({ account, fetchAccountInfo }) => {
   const { View, AppBar } = useTheme();
 
-  if (!accountInfo) {
+  useEffect(() => fetchAccountInfo(), [fetchAccountInfo]);
+
+  if (!account) {
     // TODO:
-    return <h1>Error. Please login</h1>
+    return <h1>Error. Please login</h1>;
   }
 
   return (
@@ -38,24 +35,37 @@ const LoyaltyRoute = ({ accountInfo }) => {
       <AppBar title="ps_loyalty.loyalty_card.title" />
       <div className={styles.container}>
         <SurroundPortals portalName="ps-loyalty.index.page">
-          <p>Sie haben {accountInfo.points} Punkte.</p>
-          <p>Ihre Kundennummer ist: {accountInfo.code}.</p>
-          <p>Ihr Kartennummer ist: {accountInfo.card.code}.</p>
+          <p>
+            Sie haben
+            {account.points}
+            {' '}
+Punkte.
+          </p>
+          <p>
+Ihre Kundennummer ist:
+            {account.code}
+.
+          </p>
+          <p>
+Ihr Kartennummer ist:
+            {account.card.code}
+.
+          </p>
 
           <SurroundPortals
             portalName="ps-loyalty.index.card"
             portalProps={{
-              card: accountInfo.card,
+              card: account.card,
             }}
           >
             {showQrCodeInstead ? (
               <QRCode
-                value={accountInfo.card.code}
+                value={account.card.code}
               />
             ) : (
               <Barcode
                 format={barcodeFormat}
-                value={accountInfo.card.code}
+                value={account.card.code}
                 displayValue
               />
             )}
@@ -64,7 +74,7 @@ const LoyaltyRoute = ({ accountInfo }) => {
           <SurroundPortals portalName="ps-loyalty.index.links">
             <Link href={SCANNER_ROUTE}>Scanner</Link>
             <Link href={LOYALTY_COUPONS_ROUTE}>Coupons</Link>
-            <Link href={LOYALTY_HISTORY_ROUTE}>History</Link>
+            <Link href={LOYALTY_POINTS_HISTORY_ROUTE}>History</Link>
           </SurroundPortals>
         </SurroundPortals>
       </div>
@@ -72,14 +82,15 @@ const LoyaltyRoute = ({ accountInfo }) => {
   );
 };
 
-LoyaltyRoute.propTypes = {
-  accountInfo: PropTypes.shape(),
+Account.propTypes = {
+  fetchAccountInfo: PropTypes.func.isRequired,
+  account: PropTypes.shape(),
 };
 
-LoyaltyRoute.defaultProps = {
-  accountInfo: null,
+Account.defaultProps = {
+  account: null,
 };
 
 export default () => (
-  <Route pattern={LOYALTY_ROUTE} component={connect(LoyaltyRoute)} />
+  <Route pattern={LOYALTY_ROUTE} component={withFetchAccount(Account)} />
 );

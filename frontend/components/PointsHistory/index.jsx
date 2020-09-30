@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
-import SurroundPortals from '@shopgate/pwa-common/components/SurroundPortals';
-import connect from './connector';
+import { SurroundPortals } from '@shopgate/engage/components';
+import { withFetchPointsHistory } from '../../hocs';
 
 const styles = {
   container: css({
@@ -13,7 +13,9 @@ const styles = {
 /**
  * @returns {JSX}
  */
-const CouponList = ({ history }) => {
+const CouponList = ({ history, fetchPointsHistory }) => {
+  useEffect(() => fetchPointsHistory(), [fetchPointsHistory]);
+
   if (!history || !history.length) {
     // TODO:
     return <h1>No point history yet</h1>;
@@ -36,6 +38,7 @@ const CouponList = ({ history }) => {
 };
 
 CouponList.propTypes = {
+  fetchPointsHistory: PropTypes.func.isRequired,
   history: PropTypes.arrayOf(PropTypes.shape()),
 };
 
@@ -43,4 +46,4 @@ CouponList.defaultProps = {
   history: null,
 };
 
-export default connect(CouponList);
+export default withFetchPointsHistory(CouponList);

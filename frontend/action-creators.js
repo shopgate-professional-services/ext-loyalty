@@ -1,4 +1,7 @@
 import {
+  REQUEST_INIT_ACCOUNT,
+  SUCCESS_INIT_ACCOUNT,
+  ERROR_INIT_ACCOUNT,
   RECEIVE_LOYALTY_ACCOUNT_INFO,
   REQUEST_LOYALTY_ACCOUNT_INFO,
   ERROR_LOYALTY_ACCOUNT_INFO,
@@ -9,6 +12,28 @@ import {
   RECEIVE_LOYALTY_COUPONS,
   ERROR_LOYALTY_COUPONS,
 } from './constants';
+
+/**
+ * @returns {Object}
+ */
+export const requestInitAccount = () => ({
+  type: REQUEST_INIT_ACCOUNT,
+});
+
+/**
+ * @returns {Object}
+ */
+export const successInitAccount = () => ({
+  type: SUCCESS_INIT_ACCOUNT,
+});
+
+/**
+ * @returns {Object}
+ */
+export const errorInitAccount = error => ({
+  type: ERROR_INIT_ACCOUNT,
+  error,
+});
 
 /**
  * Request LoyaltyAccountInfo.
@@ -23,7 +48,7 @@ export const requestLoyaltyAccountInfo = () => ({
  * @param {Object} payload Payload.
  * @returns {Object}
  */
-export const receiveLoyaltyAccountInfo = payload => ({
+export const receiveAccountInfo = payload => ({
   type: RECEIVE_LOYALTY_ACCOUNT_INFO,
   payload,
 });
@@ -32,7 +57,7 @@ export const receiveLoyaltyAccountInfo = payload => ({
  * Error LoyaltyAccountInfo.
  * @returns {Object}
  */
-export const errorLoyaltyAccountInfo = () => ({
+export const errorAccountInfo = () => ({
   type: ERROR_LOYALTY_ACCOUNT_INFO,
 });
 
@@ -49,7 +74,7 @@ export const requestLoyaltyPointsHistory = () => ({
  * @param {Object} payload Payload.
  * @returns {Object}
  */
-export const receiveLoyaltyPointsHistory = payload => ({
+export const receivePointsHistory = payload => ({
   type: RECEIVE_LOYALTY_POINTS_HISTORY,
   payload,
 });
@@ -58,7 +83,7 @@ export const receiveLoyaltyPointsHistory = payload => ({
  * Error LoyaltyPointsHistory.
  * @returns {Object}
  */
-export const errorLoyaltyPointsHistory = () => ({
+export const errorPointsHistory = () => ({
   type: ERROR_LOYALTY_POINTS_HISTORY,
 });
 
@@ -75,7 +100,7 @@ export const requestLoyaltyCoupons = () => ({
  * @param {Object} payload Payload.
  * @returns {Object}
  */
-export const receiveLoyaltyCoupons = payload => ({
+export const receiveCoupons = payload => ({
   type: RECEIVE_LOYALTY_COUPONS,
   payload,
 });
@@ -84,6 +109,6 @@ export const receiveLoyaltyCoupons = payload => ({
  * Error Coupons.
  * @returns {Object}
  */
-export const errorLoyaltyCoupons = () => ({
+export const errorCoupons = () => ({
   type: ERROR_LOYALTY_COUPONS,
 });

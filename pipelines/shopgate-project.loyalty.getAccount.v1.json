@@ -1,0 +1,22 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.loyalty.getAccount.v1",
+    "public": true,
+    "input": [],
+    "output": [
+      { "key": "account", "id": "1" }
+    ],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate-project/loyalty",
+        "path": "@shopgate-project/loyalty/steps/getAccount.js",
+        "input": [],
+        "output": [
+          { "key": "account", "id": "1" }
+        ]
+      }
+    ]
+  }
+}

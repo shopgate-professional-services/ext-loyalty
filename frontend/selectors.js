@@ -36,7 +36,7 @@ export const getPointsHistory = createSelector(
   }
 );
 
-export const getLoyaltyCoupons = createSelector(
+export const getCoupons = createSelector(
   getExtensionsState,
   (state) => {
     if (!state.coupons) {

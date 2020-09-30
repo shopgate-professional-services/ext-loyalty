@@ -1,0 +1,22 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.loyalty.getPointsHistory.v1",
+    "public": true,
+    "input": [],
+    "output": [
+      {"key":  "history", "id":  "1"}
+    ],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate-project/loyalty",
+        "path": "@shopgate-project/loyalty/steps/getPointsHistory.js",
+        "input": [],
+        "output": [
+          {"key":  "history", "id":  "1"}
+        ]
+      }
+    ]
+  }
+}

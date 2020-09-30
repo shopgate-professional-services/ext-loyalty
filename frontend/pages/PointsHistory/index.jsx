@@ -4,7 +4,7 @@ import { css } from 'glamor';
 import { Route } from '@shopgate/pwa-common/components';
 import { useTheme } from '@shopgate/engage/core';
 import SurroundPortals from '@shopgate/pwa-common/components/SurroundPortals';
-import { LOYALTY_HISTORY_ROUTE } from '../../constants';
+import { LOYALTY_POINTS_HISTORY_ROUTE } from '../../constants';
 import PointsHistory from '../../components/PointsHistory';
 
 const styles = {
@@ -32,5 +32,5 @@ const HistoryRoute = () => {
 };
 
 export default () => (
-  <Route pattern={LOYALTY_HISTORY_ROUTE} component={HistoryRoute} />
+  <Route pattern={LOYALTY_POINTS_HISTORY_ROUTE} component={HistoryRoute} />
 );

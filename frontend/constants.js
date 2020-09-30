@@ -7,8 +7,13 @@ export const SCANNER_SCOPE = '@shopgate-project/Loyalty';
 export const SCANNER_ROUTE = getScannerRoute(SCANNER_SCOPE, SCANNER_TYPE_BARCODE);
 
 export const LOYALTY_ROUTE = '/loyalty';
-export const LOYALTY_HISTORY_ROUTE = '/loyalty/history';
+export const LOYALTY_INIT_ACCOUNT_ROUTE = '/loyalty/init';
+export const LOYALTY_POINTS_HISTORY_ROUTE = '/loyalty/points/history';
 export const LOYALTY_COUPONS_ROUTE = '/loyalty/coupons';
+
+export const REQUEST_INIT_ACCOUNT = 'REQUEST_INIT_ACCOUNT';
+export const SUCCESS_INIT_ACCOUNT = 'SUCCESS_INIT_ACCOUNT';
+export const ERROR_INIT_ACCOUNT = 'ERROR_INIT_ACCOUNT';
 
 export const RECEIVE_LOYALTY_ACCOUNT_INFO = 'RECEIVE_LOYALTY_ACCOUNT_INFO';
 export const REQUEST_LOYALTY_ACCOUNT_INFO = 'REQUEST_LOYALTY_ACCOUNT_INFO';

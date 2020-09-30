@@ -31,20 +31,26 @@
       "type": "portals"
     },
     {
-      "id": "Loyalty",
-      "path": "frontend/pages/Loyalty/index.jsx",
+      "id": "InitAccountPage",
+      "path": "frontend/pages/InitAccount",
       "target": "app.routes",
       "type": "portals"
     },
     {
-      "id": "LoyaltyHistory",
-      "path": "frontend/pages/History/index.jsx",
+      "id": "AccountPage",
+      "path": "frontend/pages/Account",
       "target": "app.routes",
       "type": "portals"
     },
     {
-      "id": "LoyaltyCoupons",
-      "path": "frontend/pages/Coupons/index.jsx",
+      "id": "PointsHistoryPage",
+      "path": "frontend/pages/PointsHistory",
+      "target": "app.routes",
+      "type": "portals"
+    },
+    {
+      "id": "CouponsPage",
+      "path": "frontend/pages/Coupons",
       "target": "app.routes",
       "type": "portals"
     },
@@ -54,7 +60,7 @@
       "type": "subscribers"
     },
     {
-      "id": "loyalty",
+      "id": "Reducers",
       "path": "frontend/reducers.js",
       "type": "reducers"
     }

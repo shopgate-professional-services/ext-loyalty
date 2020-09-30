@@ -1,12 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import { Route } from '@shopgate/pwa-common/components';
 import { useTheme } from '@shopgate/engage/core';
 import SurroundPortals from '@shopgate/pwa-common/components/SurroundPortals';
-import {
-  LOYALTY_COUPONS_ROUTE,
-} from '../../constants';
+import { LOYALTY_COUPONS_ROUTE } from '../../constants';
 import CouponList from '../../components/CouponList';
 
 const styles = {
@@ -18,7 +15,7 @@ const styles = {
 /**
  * @returns {JSX}
  */
-const LoyaltyCouponRoute = () => {
+const Coupons = () => {
   const { View, AppBar } = useTheme();
 
   return (
@@ -34,5 +31,8 @@ const LoyaltyCouponRoute = () => {
 };
 
 export default () => (
-  <Route pattern={LOYALTY_COUPONS_ROUTE} component={LoyaltyCouponRoute} />
+  <Route
+    pattern={LOYALTY_COUPONS_ROUTE}
+    component={Coupons}
+  />
 );

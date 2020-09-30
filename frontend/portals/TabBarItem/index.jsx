@@ -4,7 +4,7 @@ import { css } from 'glamor';
 import { useNavigation } from '@shopgate/engage/core';
 import {
   LOYALTY_COUPONS_ROUTE,
-  LOYALTY_HISTORY_ROUTE,
+  LOYALTY_POINTS_HISTORY_ROUTE,
   LOYALTY_ROUTE,
   SCANNER_ROUTE
 } from '../../constants';
@@ -46,7 +46,7 @@ const TabBarItem = ({ path, TabBarAction }) => {
       icon={<Icon className={tabItemIconStyle} />}
       isHighlighted={[
         LOYALTY_ROUTE,
-        LOYALTY_HISTORY_ROUTE,
+        LOYALTY_POINTS_HISTORY_ROUTE,
         LOYALTY_COUPONS_ROUTE,
         SCANNER_ROUTE,
       ].includes(path)}

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
-import { Link } from '@shopgate/engage/components';
-import SurroundPortals from '@shopgate/pwa-common/components/SurroundPortals';
-import connect from './connector';
+import { SurroundPortals } from '@shopgate/engage/components';
+import { withFetchCoupons } from '../../hocs';
 
 const styles = {
   container: css({
@@ -14,14 +13,13 @@ const styles = {
 /**
  * @returns {JSX}
  */
-const CouponList = ({ coupons }) => {
+const CouponList = ({ coupons, fetchCoupons }) => {
+  useEffect(() => fetchCoupons(), [fetchCoupons]);
+
   if (!coupons || !coupons.length) {
-    // TODO:
     return <h1>No coupons found</h1>;
   }
-  // TODO: check for loading state
 
-  // TODO: add Portals
   return (
     <ul>
       {coupons.map(coupon => (
@@ -37,6 +35,7 @@ const CouponList = ({ coupons }) => {
 };
 
 CouponList.propTypes = {
+  fetchCoupons: PropTypes.func.isRequired,
   coupons: PropTypes.arrayOf(PropTypes.shape()),
 };
 
@@ -44,4 +43,4 @@ CouponList.defaultProps = {
   coupons: null,
 };
 
-export default connect(CouponList);
+export default withFetchCoupons(CouponList);

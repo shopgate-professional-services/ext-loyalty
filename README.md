@@ -10,17 +10,10 @@ If you want to display points next to products use [@shopgate-project/configurab
 
 ## Configuration
 
-### icon
-The icon for TabBar/NavDrawer loyalty link
-
-### barcodeFormat
-The format of the barcode. Eg EAN13, CODE128 or CODE39
-
-### showQrCodeInstead
-If set to true, it will show a QR code instead of barcode
-
-### addTabBarItem
-If set to true, it will add a link to loyalty page to TabBar (iOS theme only)
+- `icon` (string): the icon for TabBar/NavDrawer loyalty link
+- `barcodeFormat` (string): the format of the barcode. Eg EAN13, CODE128 or CODE39
+- `showQrCodeInstead` (boolean): if set to true, it will show a QR code instead of barcode
+- `addTabBarItem` (boolean): if set to true, it will add a link to loyalty page to TabBar (iOS theme only)
 
 ## About Shopgate
 
