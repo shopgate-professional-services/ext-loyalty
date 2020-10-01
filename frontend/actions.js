@@ -1,5 +1,3 @@
-import { logger } from '@shopgate/engage/core';
-import { ERROR_HANDLE_SUPPRESS } from '@shopgate/pwa-core/constants/ErrorHandleTypes';
 import { LoadingProvider } from '@shopgate/pwa-common/providers';
 import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
 import {
@@ -21,13 +19,16 @@ import {
 } from './action-creators';
 
 /**
+ * @param {Object} props .
  * @returns {Function}
  */
-export const initAccount = () => (dispatch) => {
+export const initAccount = props => (dispatch) => {
   LoadingProvider.setLoading(LOYALTY_INIT_ACCOUNT_ROUTE);
   dispatch(requestInitAccount());
 
-  const request = new PipelineRequest('shopgate-project.loyalty.initAccount').dispatch();
+  const request = new PipelineRequest('shopgate-project.loyalty.initAccount')
+    .setInput(props)
+    .dispatch();
 
   request
     .then(() => dispatch(successInitAccount()))
@@ -47,7 +48,7 @@ export const fetchAccountInfo = () => (dispatch) => {
   const request = new PipelineRequest('shopgate-project.loyalty.getAccount').dispatch();
 
   request
-    .then(payload => dispatch(receiveAccountInfo(payload.account)))
+    .then(({ account }) => dispatch(receiveAccountInfo(account)))
     .catch(error => dispatch(errorAccountInfo(error)))
     .then(() => LoadingProvider.unsetLoading(LOYALTY_ROUTE));
 

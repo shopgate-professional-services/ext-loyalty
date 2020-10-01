@@ -20,8 +20,10 @@ export const withFetchPointsHistory = connect(state => ({
   fetchPointsHistory,
 });
 
-export const withFetchAccount = connect(state => ({
+export const withAccount = connect(state => ({
   account: getAccountInfo(state),
-}), {
+}));
+
+export const withFetchAccount = connect(null, {
   fetchAccountInfo,
 });

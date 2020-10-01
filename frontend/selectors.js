@@ -16,34 +16,16 @@ export const getExtensionsState = (state) => {
 
 export const getAccountInfo = createSelector(
   getExtensionsState,
-  (state) => {
-    if (!state.accountInfo) {
-      return null;
-    }
-
-    return state.accountInfo;
-  }
+  ({ account }) => account || null
 );
 
 export const getPointsHistory = createSelector(
   getExtensionsState,
-  (state) => {
-    if (!state.history) {
-      return null;
-    }
-
-    return state.history;
-  }
+  ({ history }) => history || null
 );
 
 export const getCoupons = createSelector(
   getExtensionsState,
-  (state) => {
-    if (!state.coupons) {
-      return null;
-    }
-
-    return state.coupons;
-  }
+  ({ coupons }) => coupons || null
 );
 

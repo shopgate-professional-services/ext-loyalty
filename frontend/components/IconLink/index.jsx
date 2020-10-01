@@ -6,22 +6,21 @@ import { Link, RippleButton } from '@shopgate/engage/components';
 const styles = {
   buttonWrapper: css({
     position: 'relative',
+    marginBottom: '0.5rem',
   }).toString(),
   icon: css({
     position: 'absolute',
     right: 0,
-    marginTop: '.5rem',
     marginRight: '.5rem',
     zIndex: 1,
     height: '24px',
     width: '24px',
-  }),
+  }).toString(),
   button: css({
     textAlign: 'center',
     width: '100%',
-    backgroundColor: '#32AC5C',
     borderRadius: '4px',
-  }),
+  }).toString(),
 };
 
 /**
@@ -32,11 +31,11 @@ function IconLink({
 }) {
   return (
     <Link className={`${styles.buttonWrapper} ${className}`} href={href}>
-      <Icon className={styles.icon} />
       <RippleButton
         className={styles.button}
-        type="primary"
+        type="secondary"
       >
+        <Icon className={styles.icon} />
         {label}
       </RippleButton>
     </Link>

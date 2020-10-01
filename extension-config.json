@@ -60,7 +60,7 @@
       "type": "subscribers"
     },
     {
-      "id": "Reducers",
+      "id": "loyalty",
       "path": "frontend/reducers.js",
       "type": "reducers"
     }

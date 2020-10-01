@@ -1,8 +1,8 @@
 import { SUCCESS_LOGOUT } from '@shopgate/engage/core';
 import {
-  ERROR_LOYALTY_ACCOUNT_INFO,
-  REQUEST_LOYALTY_ACCOUNT_INFO,
-  RECEIVE_LOYALTY_ACCOUNT_INFO, RECEIVE_LOYALTY_POINTS_HISTORY, RECEIVE_LOYALTY_COUPONS,
+  RECEIVE_LOYALTY_ACCOUNT_INFO,
+  RECEIVE_LOYALTY_POINTS_HISTORY,
+  RECEIVE_LOYALTY_COUPONS,
 } from './constants';
 
 /**
@@ -13,7 +13,7 @@ import {
  */
 const loyaltyReducer = (
   state = {
-    accountInfo: null,
+    account: null,
     history: null,
     coupons: null,
   },
@@ -23,7 +23,7 @@ const loyaltyReducer = (
     case RECEIVE_LOYALTY_ACCOUNT_INFO:
       return {
         ...state,
-        accountInfo: action.payload,
+        account: action.payload,
       };
     case RECEIVE_LOYALTY_POINTS_HISTORY:
       return {
@@ -38,7 +38,7 @@ const loyaltyReducer = (
     case SUCCESS_LOGOUT:
       return {
         ...state,
-        accountInfo: null,
+        account: null,
         history: null,
         coupons: null,
       };

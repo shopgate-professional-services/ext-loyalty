@@ -1,21 +1,19 @@
 module.exports.accountInfo = {
-  account: {
+  code: '0645-1548-4157-1748',
+  status: 'ACTIVE',
+  points: 247,
+  card: {
     code: '0645-1548-4157-1748',
-    status: 'ACTIVE',
-    points: 247,
-    card: {
-      code: 'SG100',
-      label: '0645-1548-4157-1748',
-      scannedCode: 'https://picsum.photos/150',
-      status: 'ACTIVE'
-    },
-    level: {
-      code: 'gold',
-      label: 'Gold member'
-    },
-    customAttributes: {
-      lockedPoints: 50
-    }
+    label: '0645-1548-4157-1748',
+    scannedCode: '012345678905',
+    status: 'ACTIVE'
+  },
+  level: {
+    code: 'gold',
+    label: 'Gold member'
+  },
+  customAttributes: {
+    lockedPoints: 50
   }
 }
 
