@@ -7,9 +7,12 @@ import { LOYALTY_COUPONS_ROUTE } from '../../constants';
 import CouponList from '../../components/CouponList';
 
 const styles = {
-  container: css({
+  content: css({
 
-  }).toString(),
+  }),
+  coupons: css({
+    padding: '1rem',
+  }),
 };
 
 /**
@@ -21,9 +24,11 @@ const Coupons = () => {
   return (
     <View>
       <AppBar title="ps_loyalty.coupons.title" />
-      <div className={styles.container}>
+      <div className={styles.content}>
         <SurroundPortals portalName="ps-loyalty.coupons.page">
-          <CouponList />
+          <div className={styles.coupons}>
+            <CouponList />
+          </div>
         </SurroundPortals>
       </div>
     </View>

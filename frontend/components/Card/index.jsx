@@ -7,7 +7,6 @@ const styles = {
   card: css({
     width: '100%',
     background: themeConfig.colors.light,
-    border: `1px solid ${themeConfig.colors.light}`,
     boxSizing: 'border-box',
     boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.15)',
     borderRadius: '11px',

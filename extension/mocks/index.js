@@ -22,12 +22,12 @@ module.exports.coupons = [
     code: 'WINTER50',
     label: 'Beim Kauf einer Marken-Winterjacke.',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-    image: 'https://picsum.photos/330/120',
+    image: null,
     scannedCode: 'https://picsum.photos/150',
     validFrom: (new Date()).toISOString(),
     validTo: (new Date(Date.now() + 5 * 24 * 36e5)).toISOString(),
-    type: 'percentage',
-    value: 5,
+    type: 'absolute',
+    value: 50,
     customAttributes: {}
   },
   {
@@ -39,7 +39,7 @@ module.exports.coupons = [
     validFrom: (new Date()).toISOString(),
     validTo: (new Date(Date.now() + 5 * 24 * 36e5)).toISOString(),
     type: 'absolute',
-    value: 10.00,
+    value: 100.00,
     customAttributes: {}
   }
 ]
