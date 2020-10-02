@@ -17,50 +17,24 @@ module.exports.accountInfo = {
   }
 }
 
-module.exports.coupons = [
-  {
-    code: 'WINTER50',
-    label: 'Beim Kauf einer Marken-Winterjacke.',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-    image: null,
-    scannedCode: 'https://picsum.photos/150',
-    validFrom: (new Date()).toISOString(),
-    validTo: (new Date(Date.now() + 5 * 24 * 36e5)).toISOString(),
-    type: 'absolute',
-    value: 50,
-    customAttributes: {}
-  },
-  {
-    code: 'Aktion2020',
-    label: 'Beim Kauf einer Marken-Winterjacke.',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-    image: 'https://picsum.photos/330/120',
-    scannedCode: 'https://picsum.photos/150',
-    validFrom: (new Date()).toISOString(),
-    validTo: (new Date(Date.now() + 5 * 24 * 36e5)).toISOString(),
-    type: 'absolute',
-    value: 100.00,
-    customAttributes: {}
-  }
-]
+module.exports.coupons = [...Array(10).keys()].map(ind => ({
+  code: `WINTER${ind * 10}`,
+  label: 'Lorem ipsum dolor sit amet',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+  image: ind % 2 !== 0 ? `https://picsum.photos/330/${120 + ind}` : null,
+  validFrom: (new Date()).toISOString(),
+  validTo: (new Date(Date.now() + ind * 2 * 24 * 36e5)).toISOString(),
+  type: 'absolute',
+  value: 10 * ++ind,
+  customAttributes: {}
+}))
 
-module.exports.pointsHistory = [
-  {
-    code: 'WINTER50',
-    label: 'Beim Kauf einer Marken-Winterjacke.',
-    image: 'https://picsum.photos/80',
-    date: (new Date(Date.now() - 5 * 24 * 36e5)).toISOString(),
-    type: 'earned',
-    value: 100,
-    customAttributes: {}
-  },
-  {
-    code: 'WINTER50',
-    label: 'Beim Kauf einer Marken-Winterjacke.',
-    image: 'https://picsum.photos/80',
-    date: (new Date(Date.now() - 10 * 24 * 36e5)).toISOString(),
-    type: 'redeemed',
-    value: 50,
-    customAttributes: {}
-  }
-]
+module.exports.pointsHistory = [...Array(10).keys()].map(ind => ({
+  code: `WINTER${ind * 10}`,
+  label: 'Lorem ipsum dolor sit amet',
+  image: `https://picsum.photos/${80 + ind}`,
+  date: (new Date(Date.now() - ind * 24 * 36e5)).toISOString(),
+  type: ind % 2 !== 0 ? 'earned' : 'redeemed',
+  value: Math.round(Math.random() * 1000),
+  customAttributes: {}
+}))

@@ -1,35 +1,91 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
-import { SurroundPortals } from '@shopgate/engage/components';
+import { themeConfig } from '@shopgate/engage';
+import { Grid, SurroundPortals } from '@shopgate/engage/components';
+import { i18n } from '@shopgate/engage/core/helpers/i18n';
 import { withFetchPointsHistory } from '../../hocs';
 
-const styles = {
-  container: css({
+const types = {
+  earned: css({
+    color: themeConfig.colors.primary,
+  }),
+  redeemed: css({
+    color: themeConfig.colors.secondary || '#FFB800',
+  }),
+};
 
+const styles = {
+  listItem: css({
+    marginBottom: '1.5rem',
+  }),
+  gridImage: css({
+    paddingRight: '1rem',
   }).toString(),
+  name: css({
+    fontWeight: 500,
+    margin: '0 0 0.25rem',
+  }).toString(),
+  image: css({
+    height: '38px',
+    width: '38px',
+    backgroundSize: 'cover',
+  }),
+  points: {
+    earned: css(types.earned, {
+      paddingLeft: '1rem',
+      fontSize: '1.5rem',
+      display: 'flex',
+      alignItems: 'center',
+    }).toString(),
+    redeemed: css(types.redeemed, {
+      paddingLeft: '1rem',
+      display: 'flex',
+      alignItems: 'center',
+      fontSize: '1.5rem',
+      '&&:before': {
+        content: '-',
+      },
+    }).toString(),
+  },
 };
 
 /**
  * @returns {JSX}
  */
-const CouponList = ({ history, fetchPointsHistory }) => {
-  useEffect(() => fetchPointsHistory(), [fetchPointsHistory]);
+const PointsHistory = ({ history, fetchPointsHistory }) => {
+  useEffect(() => { fetchPointsHistory(); }, [fetchPointsHistory]);
 
   if (!history || !history.length) {
-    // TODO:
-    return <h1>No point history yet</h1>;
+    return <h2>{i18n.text('Noch keine Geschichte vorhanden')}</h2>;
   }
-  // TODO: check for loading state
 
   return (
     <ul>
       {history.map(historyItem => (
-        <li key={historyItem.code}>
+        <li key={`${historyItem.code}-${historyItem.value}`} className={styles.listItem}>
           <SurroundPortals portalName="ps-loyalty.history.history-item" portalProps={{ historyItem }}>
-            <p>{historyItem.label}</p>
-            <p>{historyItem.points}</p>
-            <p>{historyItem.time}</p>
+            <Grid>
+              <Grid.Item shrink={0} className={styles.gridImage}>
+                <div
+                  className={styles.image}
+                  style={{
+                    ...historyItem.image && { backgroundImage: `url(${historyItem.image})` },
+                  }}
+                />
+              </Grid.Item>
+              <Grid.Item grow={1}>
+                <div className={styles.name}>{historyItem.label}</div>
+                <div>
+                  <span className={types[historyItem.type]}>{i18n.text(historyItem.type)}</span>
+                  {' '}
+                  <span>{i18n.text('ps_loyalty.history.date', { date: new Date(historyItem.date) })}</span>
+                </div>
+              </Grid.Item>
+              <Grid.Item shrink={0} className={styles.points[historyItem.type]}>
+                {historyItem.value}
+              </Grid.Item>
+            </Grid>
           </SurroundPortals>
         </li>
       ))}
@@ -37,13 +93,13 @@ const CouponList = ({ history, fetchPointsHistory }) => {
   );
 };
 
-CouponList.propTypes = {
+PointsHistory.propTypes = {
   fetchPointsHistory: PropTypes.func.isRequired,
   history: PropTypes.arrayOf(PropTypes.shape()),
 };
 
-CouponList.defaultProps = {
+PointsHistory.defaultProps = {
   history: null,
 };
 
-export default withFetchPointsHistory(CouponList);
+export default withFetchPointsHistory(PointsHistory);

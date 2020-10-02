@@ -7,7 +7,8 @@
       "title": "Gutscheine"
     },
     "history": {
-      "title": "Historie"
+      "title": "Historie",
+      "date": "am {date, date, short}"
     },
     "scanner": {
       "invalid_format": "Ungültiges Format. Bitte scannen Sie einen validen Barcode.",

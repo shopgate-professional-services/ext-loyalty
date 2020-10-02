@@ -7,7 +7,8 @@
       "title": "Coupon"
     },
     "history": {
-      "title": "History"
+      "title": "History",
+      "date": "am {date, date, short}"
     },
     "scanner": {
       "invalid_format": "Invalid format. Please scan a valid Barcode",

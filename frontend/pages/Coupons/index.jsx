@@ -1,10 +1,9 @@
 import React from 'react';
 import { css } from 'glamor';
-import { Route } from '@shopgate/pwa-common/components';
 import { useTheme } from '@shopgate/engage/core';
-import SurroundPortals from '@shopgate/pwa-common/components/SurroundPortals';
+import { SurroundPortals, Route } from '@shopgate/engage/components';
 import { LOYALTY_COUPONS_ROUTE } from '../../constants';
-import CouponList from '../../components/CouponList';
+import CouponsList from '../../components/CouponsList';
 
 const styles = {
   content: css({
@@ -27,7 +26,7 @@ const Coupons = () => {
       <div className={styles.content}>
         <SurroundPortals portalName="ps-loyalty.coupons.page">
           <div className={styles.coupons}>
-            <CouponList />
+            <CouponsList />
           </div>
         </SurroundPortals>
       </div>

@@ -20,7 +20,7 @@ const styles = {
   }),
   info: css({
     margin: '1.5rem 0',
-    padding: '0 1.5rem',
+    padding: '0 1rem',
   }).toString(),
   name: css({
     fontWeight: 500,
@@ -65,7 +65,7 @@ const CouponList = ({ coupons, fetchCoupons }) => {
   const [popupBarCode, setPopupBarCode] = useState(null);
 
   if (!coupons || !coupons.length) {
-    return <h1>No coupons found</h1>;
+    return <h2>{i18n.text('Kein Gutscheine wurden gefunden')}</h2>;
   }
 
   return (

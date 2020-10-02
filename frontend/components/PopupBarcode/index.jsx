@@ -8,7 +8,7 @@ import { barcodeFormat } from '../../config';
 
 const styles = {
   card: css({
-    position: 'absolute',
+    position: 'fixed',
     zIndex: 3,
     top: '20%',
     left: '1rem',
