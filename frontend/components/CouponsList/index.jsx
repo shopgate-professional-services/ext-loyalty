@@ -60,7 +60,7 @@ const styles = {
 /**
  * @returns {JSX}
  */
-const CouponList = ({ coupons, fetchCoupons }) => {
+const CouponList = ({ coupons, fetchCoupons, redeemMode }) => {
   useEffect(() => { fetchCoupons(); }, [fetchCoupons]);
   const [popupBarCode, setPopupBarCode] = useState(null);
 
@@ -79,7 +79,7 @@ const CouponList = ({ coupons, fetchCoupons }) => {
         {coupons.map(coupon => (
           <li key={coupon.code} className={styles.listItem}>
             <SurroundPortals portalName="ps-loyalty.coupons.coupon-item" portalProps={{ coupon }}>
-              <Clickable onClick={() => setPopupBarCode(coupon.code)}>
+              <Clickable onClick={() => (!redeemMode ? setPopupBarCode(coupon.code) : null)}>
                 <Card>
                   <Grid>
                     <Grid.Item grow={1}>
@@ -94,35 +94,55 @@ const CouponList = ({ coupons, fetchCoupons }) => {
                       <div className={styles.info}>
                         <div className={styles.name}>{coupon.label}</div>
 
-                        <Grid>
-                          <Grid.Item shrink={0} className={styles.infoIcon}>
-                            <DiscountIcon size={20} />
-                          </Grid.Item>
-                          <Grid.Item grow={1} className={styles.infoLabel}>
-                            {i18n.text('CODE')}
-                          </Grid.Item>
-                          <Grid.Item grow={1} className={styles.infoCode}>
-                            {coupon.code}
-                          </Grid.Item>
-                        </Grid>
+                        {!redeemMode && (
+                          <Grid>
+                            <Grid.Item shrink={0} className={styles.infoIcon}>
+                              <DiscountIcon size={20} />
+                            </Grid.Item>
+                            <Grid.Item grow={1} className={styles.infoLabel}>
+                              {i18n.text('CODE')}
+                            </Grid.Item>
+                            <Grid.Item grow={1} className={styles.infoCode}>
+                              {coupon.code}
+                            </Grid.Item>
+                          </Grid>
+                        )}
 
-                        <Grid>
-                          <Grid.Item shrink={0} className={styles.infoIcon}>
-                            <CalendarIcon size={20} />
-                          </Grid.Item>
-                          <Grid.Item grow={1} className={styles.infoLabel}>
-                            {i18n.text('Gultig bis')}
-                          </Grid.Item>
-                          <Grid.Item grow={1} className={styles.infoCode}>
-                            {i18n.text('!!noch 5 Tage')}
-                          </Grid.Item>
-                        </Grid>
+                        {!redeemMode && (
+                          <Grid>
+                            <Grid.Item shrink={0} className={styles.infoIcon}>
+                              <CalendarIcon size={20} />
+                            </Grid.Item>
+                            <Grid.Item grow={1} className={styles.infoLabel}>
+                              {i18n.text('Gultig bis')}
+                            </Grid.Item>
+                            <Grid.Item grow={1} className={styles.infoCode}>
+                              {i18n.text('!!noch 5 Tage')}
+                            </Grid.Item>
+                          </Grid>
+                        )}
+
+                        {!redeemMode && (
+                          <Grid>
+                            <Grid.Item shrink={0} className={styles.infoIcon}>
+                              <CalendarIcon size={20} />
+                            </Grid.Item>
+                            <Grid.Item grow={1} className={styles.infoLabel}>
+                              {i18n.text('Punkte')}
+                            </Grid.Item>
+                            <Grid.Item grow={1} className={styles.infoCode}>
+                              {i18n.text('100')}
+                            </Grid.Item>
+                          </Grid>
+                        )}
                       </div>
 
                     </Grid.Item>
-                    <Grid.Item shrink={0} className={styles.valueCol}>
-                      {coupon.value}
-                    </Grid.Item>
+                    {redeemMode && (
+                      <Grid.Item shrink={0} className={styles.valueCol}>
+                        {coupon.value}
+                      </Grid.Item>
+                    )}
                   </Grid>
                 </Card>
               </Clickable>
@@ -136,10 +156,12 @@ const CouponList = ({ coupons, fetchCoupons }) => {
 
 CouponList.propTypes = {
   fetchCoupons: PropTypes.func.isRequired,
+  redeemMode: PropTypes.bool,
   coupons: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 CouponList.defaultProps = {
+  redeemMode: false,
   coupons: null,
 };
 

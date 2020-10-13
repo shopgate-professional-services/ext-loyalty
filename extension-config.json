@@ -55,6 +55,12 @@
       "type": "portals"
     },
     {
+      "id": "CouponsTabPage",
+      "path": "frontend/pages/Coupons/TabsRoute.jsx",
+      "target": "app.routes",
+      "type": "portals"
+    },
+    {
       "id": "Subscribers",
       "path": "frontend/subscriptions.js",
       "type": "subscribers"
