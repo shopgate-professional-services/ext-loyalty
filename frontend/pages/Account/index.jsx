@@ -66,6 +66,16 @@ const styles = {
  */
 const Account = ({ account }) => {
   const { View, AppBar } = useTheme();
+
+  if (!account) {
+    return (
+      <View>
+        <AppBar title="ps_loyalty.loyalty_card.title" />
+        Loading...
+      </View>
+    );
+  }
+
   return (
     <View>
       <AppBar title="ps_loyalty.loyalty_card.title" />
