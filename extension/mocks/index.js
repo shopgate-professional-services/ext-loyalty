@@ -1,7 +1,7 @@
 module.exports.accountInfo = {
   code: '0645-1548-4157-1748',
   status: 'ACTIVE',
-  points: 247,
+  points: 648,
   card: {
     code: '0645-1548-4157-1748',
     label: '0645-1548-4157-1748',
@@ -17,13 +17,26 @@ module.exports.accountInfo = {
   }
 }
 
-module.exports.coupons = [...Array(10).keys()].map(ind => ({
+module.exports.coupons = [...Array(5).keys()].map(ind => ({
   code: `WINTER${ind * 10}`,
   label: 'Lorem ipsum dolor sit amet',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
   image: ind % 2 !== 0 ? `https://picsum.photos/330/${120 + ind}` : null,
   validFrom: (new Date()).toISOString(),
   validTo: (new Date(Date.now() + ind * 2 * 24 * 36e5)).toISOString(),
+  type: 'absolute',
+  value: 10 * ++ind,
+  customAttributes: {},
+  enrollPoints: Math.round(Math.random() * 1000)
+}))
+
+module.exports.userCoupons = [...Array(3).keys()].map(ind => ({
+  code: `WINTER${ind * 10}`,
+  label: 'Lorem ipsum dolor sit amet',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+  image: ind % 2 !== 0 ? `https://picsum.photos/330/${120 + ind}` : null,
+  validFrom: (new Date()).toISOString(),
+  validTo: (new Date(Date.now() + 36e5 + ind * 2 * 24 * 36e5)).toISOString(),
   type: 'absolute',
   value: 10 * ++ind,
   customAttributes: {}

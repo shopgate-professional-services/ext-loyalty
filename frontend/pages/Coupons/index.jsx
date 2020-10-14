@@ -9,7 +9,7 @@ import Tabs, { Tab } from '../../components/Tabs';
 
 const styles = {
   content: css({
-
+    position: 'relative',
   }),
 };
 
@@ -18,14 +18,16 @@ export const Coupons = () => {
   return (
     <View>
       <AppBar title="ps_loyalty.coupon.title" />
-      <Tabs>
-        <Tab title={i18n.text('#COUPONS')} key="coupons">
-          <MyCoupons />
-        </Tab>
-        <Tab title={i18n.text('#EINLÖSEN')} key="points">
-          <RedeemCoupons />
-        </Tab>
-      </Tabs>
+      <div className={styles.content}>
+        <Tabs>
+          <Tab title={i18n.text('ps_loyalty.coupon.title')} key="coupons">
+            <MyCoupons />
+          </Tab>
+          <Tab title={i18n.text('ps_loyalty.coupon.enroll')} key="points">
+            <RedeemCoupons />
+          </Tab>
+        </Tabs>
+      </div>
     </View>
   );
 };

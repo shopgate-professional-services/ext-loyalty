@@ -29,3 +29,8 @@ export const getCoupons = createSelector(
   ({ coupons }) => coupons || null
 );
 
+export const getUserCoupons = createSelector(
+  getExtensionsState,
+  ({ userCoupons: coupons }) => coupons || null
+);
+

@@ -63,10 +63,10 @@ const InitAccount = () => {
           <DonationIcon size={54} />
         </div>
         <div className={styles.intro}>
-          {i18n.text('Bitte melde dich für unseren Treupunkte bereich an.')}
+          {i18n.text('ps_loyalty.init_account.intro')}
         </div>
         <div className={styles.text}>
-          {i18n.text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')}
+          {i18n.text('ps_loyalty.init_account.text')}
         </div>
 
         <Grid className={styles.grid}>
@@ -74,7 +74,7 @@ const InitAccount = () => {
             <CardIcon size={24} />
           </Grid.Item>
           <Grid.Item grow={1}>
-            {i18n.text('Digitale Kundenkarte')}
+            {i18n.text('ps_loyalty.init_account.card')}
           </Grid.Item>
         </Grid>
         <Grid className={styles.grid}>
@@ -82,7 +82,7 @@ const InitAccount = () => {
             <DiscountIcon size={24} />
           </Grid.Item>
           <Grid.Item grow={1}>
-            {i18n.text('Exklusive Rabattaktionen')}
+            {i18n.text('ps_loyalty.init_account.bonuses')}
           </Grid.Item>
         </Grid>
         <Grid className={styles.grid}>
@@ -90,7 +90,7 @@ const InitAccount = () => {
             <PointsIcon size={24} />
           </Grid.Item>
           <Grid.Item grow={1}>
-            {i18n.text('Punkte sammeln und einlösen')}
+            {i18n.text('ps_loyalty.init_account.points')}
           </Grid.Item>
         </Grid>
 
@@ -99,12 +99,12 @@ const InitAccount = () => {
         <IconLink
           href={SCANNER_ROUTE}
           icon={BarcodeScannerIcon}
-          label={i18n.text('Treuekarte scannen')}
+          label={i18n.text('ps_loyalty.ini_account.scan')}
         />
         <IconLink
           href={SCANNER_ROUTE}
           icon={AccountBoxIcon}
-          label={i18n.text('Einloggen')}
+          label={i18n.text('ps_loyalty.ini_account.login')}
         />
       </div>
     </View>

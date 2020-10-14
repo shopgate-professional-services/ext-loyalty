@@ -1,15 +1,18 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, {
+  useEffect, useState, Fragment, useCallback,
+} from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import { themeConfig } from '@shopgate/engage';
 import { i18n } from '@shopgate/engage/core';
-import { Grid, SurroundPortals } from '@shopgate/engage/components';
+import { Grid, RippleButton, SurroundPortals } from '@shopgate/engage/components';
 import Clickable from '../Clickable';
+import PopupBarcode from '../PopupBarcode';
 import Card from '../Card';
 import DiscountIcon from '../Icons/DiscountIcon';
 import CalendarIcon from '../Icons/CalendarIcon';
-import { withFetchCoupons } from '../../hocs';
-import PopupBarcode from '../PopupBarcode';
+import SmilyIcon from '../Icons/SmilyIcon';
+import { withFetchCoupons, withEnrollCoupon } from '../../hocs';
 
 const styles = {
   listBlured: css({
@@ -26,25 +29,23 @@ const styles = {
     fontWeight: 500,
     margin: '1rem 0',
   }).toString(),
+  description: css({
+    color: themeConfig.colors.shade3,
+    margin: '0.25rem 0 0.75rem',
+  }).toString(),
   image: css({
     height: '115px',
     backgroundSize: 'cover',
-    borderRadius: '11px 0 0 0',
+    borderRadius: '5px 5px 0 0',
   }).toString(),
-  infoIcon: css({
-    width: '36px',
-    height: '26px',
-    color: themeConfig.colors.shade3,
+  button: css({
+    '&&': {
+      fontWeight: 'normal',
+      borderRadius: 4,
+      textTransform: 'lowercase',
+    },
   }).toString(),
-  infoLabel: css({
-    fontSize: '0.825rem',
-    color: themeConfig.colors.shade3,
-  }).toString(),
-  infoCode: css({
-    fontSize: '0.825rem',
-    color: themeConfig.colors.primary,
-  }).toString(),
-  valueCol: css({
+  enrollPoints: css({
     width: '62px',
     fontWeight: 500,
     fontSize: '1.25rem',
@@ -60,12 +61,17 @@ const styles = {
 /**
  * @returns {JSX}
  */
-const CouponList = ({ coupons, fetchCoupons, redeemMode }) => {
+const CouponList = ({ coupons, fetchCoupons, enrollCoupon }) => {
   useEffect(() => { fetchCoupons(); }, [fetchCoupons]);
   const [popupBarCode, setPopupBarCode] = useState(null);
 
+  /** @param {Object} coupon . */
+  const enroll = (coupon) => {
+    enrollCoupon({ code: coupon.code }).then(fetchCoupons);
+  };
+
   if (!coupons || !coupons.length) {
-    return <h2>{i18n.text('Kein Gutscheine wurden gefunden')}</h2>;
+    return <h2>{i18n.text('ps_loyalty.coupon.noCoupons')}</h2>;
   }
 
   return (
@@ -79,73 +85,32 @@ const CouponList = ({ coupons, fetchCoupons, redeemMode }) => {
         {coupons.map(coupon => (
           <li key={coupon.code} className={styles.listItem}>
             <SurroundPortals portalName="ps-loyalty.coupons.coupon-item" portalProps={{ coupon }}>
-              <Clickable onClick={() => (!redeemMode ? setPopupBarCode(coupon.code) : null)}>
-                <Card>
-                  <Grid>
-                    <Grid.Item grow={1}>
-                      {coupon.image &&
-                        <div
-                          className={styles.image}
-                          style={{
-                            backgroundImage: `url(${coupon.image})`,
-                          }}
-                        />
+              <Card notch>
+                <Grid>
+                  <Grid.Item grow={1}>
+                    {coupon.image &&
+                    <div
+                      className={styles.image}
+                      style={{
+                        backgroundImage: `url(${coupon.image})`,
+                      }}
+                    />
                       }
-                      <div className={styles.info}>
-                        <div className={styles.name}>{coupon.label}</div>
+                    <div className={styles.info}>
+                      <div className={styles.name}>{coupon.label}</div>
+                      <div className={styles.description}>{coupon.description}</div>
 
-                        {!redeemMode && (
-                          <Grid>
-                            <Grid.Item shrink={0} className={styles.infoIcon}>
-                              <DiscountIcon size={20} />
-                            </Grid.Item>
-                            <Grid.Item grow={1} className={styles.infoLabel}>
-                              {i18n.text('CODE')}
-                            </Grid.Item>
-                            <Grid.Item grow={1} className={styles.infoCode}>
-                              {coupon.code}
-                            </Grid.Item>
-                          </Grid>
-                        )}
+                      <RippleButton type="secondary" onClick={() => enroll(coupon)} className={styles.button}>
+                        {i18n.text('ps_loyalty.coupon.enroll')}
+                      </RippleButton>
+                    </div>
 
-                        {!redeemMode && (
-                          <Grid>
-                            <Grid.Item shrink={0} className={styles.infoIcon}>
-                              <CalendarIcon size={20} />
-                            </Grid.Item>
-                            <Grid.Item grow={1} className={styles.infoLabel}>
-                              {i18n.text('Gultig bis')}
-                            </Grid.Item>
-                            <Grid.Item grow={1} className={styles.infoCode}>
-                              {i18n.text('!!noch 5 Tage')}
-                            </Grid.Item>
-                          </Grid>
-                        )}
-
-                        {!redeemMode && (
-                          <Grid>
-                            <Grid.Item shrink={0} className={styles.infoIcon}>
-                              <CalendarIcon size={20} />
-                            </Grid.Item>
-                            <Grid.Item grow={1} className={styles.infoLabel}>
-                              {i18n.text('Punkte')}
-                            </Grid.Item>
-                            <Grid.Item grow={1} className={styles.infoCode}>
-                              {i18n.text('100')}
-                            </Grid.Item>
-                          </Grid>
-                        )}
-                      </div>
-
-                    </Grid.Item>
-                    {redeemMode && (
-                      <Grid.Item shrink={0} className={styles.valueCol}>
-                        {coupon.value}
-                      </Grid.Item>
-                    )}
-                  </Grid>
-                </Card>
-              </Clickable>
+                  </Grid.Item>
+                  <Grid.Item shrink={0} className={styles.enrollPoints}>
+                    {coupon.enrollPoints}
+                  </Grid.Item>
+                </Grid>
+              </Card>
             </SurroundPortals>
           </li>
         ))}
@@ -155,14 +120,13 @@ const CouponList = ({ coupons, fetchCoupons, redeemMode }) => {
 };
 
 CouponList.propTypes = {
+  enrollCoupon: PropTypes.func.isRequired,
   fetchCoupons: PropTypes.func.isRequired,
-  redeemMode: PropTypes.bool,
   coupons: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 CouponList.defaultProps = {
-  redeemMode: false,
   coupons: null,
 };
 
-export default withFetchCoupons(CouponList);
+export default withEnrollCoupon(withFetchCoupons(CouponList));

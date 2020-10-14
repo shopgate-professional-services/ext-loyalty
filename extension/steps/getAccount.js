@@ -1,10 +1,8 @@
-const { accountInfo } = require('../mocks')
-
 /**
  * @returns {Promise<{account}>}
  */
 module.exports = async (context) => {
-  const account = await context.storage.device.get('loyalty_account')
+  const account = await context.storage.device.get('account')
   if (!account) {
     const err = new Error('Account not yet activated')
     err.code = 'EACCESS'
@@ -12,9 +10,6 @@ module.exports = async (context) => {
   }
 
   return {
-    account: {
-      ...accountInfo,
-      ...account
-    }
+    account
   }
 }

@@ -49,7 +49,7 @@ const PointsHistory = ({ account }) => {
             <DiscountIcon size={24} />
           </Grid.Item>
           <Grid.Item grow={1}>
-            {i18n.text('Treuepunkte Guthaben')}
+            {i18n.text('ps_loyalty.history.balance')}
           </Grid.Item>
           <Grid.Item shrink={0} className={styles.headerPoints}>
             {!!account && account.points}

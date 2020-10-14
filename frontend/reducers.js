@@ -3,6 +3,7 @@ import {
   RECEIVE_LOYALTY_ACCOUNT_INFO,
   RECEIVE_LOYALTY_POINTS_HISTORY,
   RECEIVE_LOYALTY_COUPONS,
+  RECEIVE_LOYALTY_USER_COUPONS,
 } from './constants';
 
 /**
@@ -16,6 +17,7 @@ const loyaltyReducer = (
     account: null,
     history: null,
     coupons: null,
+    userCoupons: null,
   },
   action
 ) => {
@@ -35,12 +37,18 @@ const loyaltyReducer = (
         ...state,
         coupons: action.payload,
       };
+    case RECEIVE_LOYALTY_USER_COUPONS:
+      return {
+        ...state,
+        userCoupons: action.payload,
+      };
     case SUCCESS_LOGOUT:
       return {
         ...state,
         account: null,
         history: null,
         coupons: null,
+        userCoupons: null,
       };
     default:
       return state;

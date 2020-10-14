@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
-import { getCoupons, getPointsHistory, getAccountInfo } from './selectors';
+import { addCouponsToCart } from '@shopgate/engage/cart';
 import {
-  fetchCoupons, initAccount, fetchPointsHistory, fetchAccountInfo,
+  getCoupons, getUserCoupons, getPointsHistory, getAccountInfo,
+} from './selectors';
+import {
+  fetchCoupons, initAccount, fetchPointsHistory, fetchAccountInfo, fetchUserCoupons, enrollCoupon,
 } from './actions';
 
 export const withInitAccount = connect(null, {
@@ -12,6 +15,12 @@ export const withFetchCoupons = connect(state => ({
   coupons: getCoupons(state),
 }), {
   fetchCoupons,
+});
+
+export const withFetchUserCoupons = connect(state => ({
+  coupons: getUserCoupons(state),
+}), {
+  fetchUserCoupons,
 });
 
 export const withFetchPointsHistory = connect(state => ({
@@ -26,4 +35,12 @@ export const withAccount = connect(state => ({
 
 export const withFetchAccount = connect(null, {
   fetchAccountInfo,
+});
+
+export const withEnrollCoupon = connect(null, {
+  enrollCoupon,
+});
+
+export const withAddCouponsToCart = connect(null, {
+  addCouponsToCart,
 });

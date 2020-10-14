@@ -10,12 +10,17 @@ import {
   errorPointsHistory,
   receivePointsHistory,
   requestLoyaltyPointsHistory,
-  requestLoyaltyCoupons,
-  receiveCoupons,
-  errorCoupons,
+  requestUserCoupons,
+  receiveUserCoupons,
+  errorUserCoupons,
   requestInitAccount,
   successInitAccount,
   errorInitAccount,
+  requestCoupons,
+  receiveCoupons,
+  errorCoupons,
+  successEnrollCoupon,
+  errorEnrollCoupon,
 } from './action-creators';
 
 /**
@@ -77,7 +82,7 @@ export const fetchPointsHistory = () => (dispatch) => {
  */
 export const fetchCoupons = () => (dispatch) => {
   LoadingProvider.setLoading(LOYALTY_COUPONS_ROUTE);
-  dispatch(requestLoyaltyCoupons());
+  dispatch(requestCoupons());
 
   const request = new PipelineRequest('shopgate-project.loyalty.getCoupons').dispatch();
 
@@ -88,3 +93,40 @@ export const fetchCoupons = () => (dispatch) => {
 
   return request;
 };
+
+/**
+ * @returns {function(*): Promise}
+ */
+export const fetchUserCoupons = () => (dispatch) => {
+  LoadingProvider.setLoading(LOYALTY_COUPONS_ROUTE);
+  dispatch(requestUserCoupons());
+
+  const request = new PipelineRequest('shopgate-project.loyalty.getUserCoupons').dispatch();
+
+  request
+    .then(({ coupons }) => dispatch(receiveUserCoupons(coupons)))
+    .catch(error => dispatch(errorUserCoupons(error)))
+    .then(() => LoadingProvider.unsetLoading(LOYALTY_COUPONS_ROUTE));
+
+  return request;
+};
+
+/**
+ * @param {Object} props .
+ * @returns {function(*): Promise}
+ */
+export const enrollCoupon = props => (dispatch) => {
+  LoadingProvider.setLoading(LOYALTY_COUPONS_ROUTE);
+
+  const request = new PipelineRequest('shopgate-project.loyalty.enrollCoupon')
+    .setInput(props)
+    .dispatch();
+
+  request
+    .then(() => dispatch(successEnrollCoupon(props)))
+    .catch(error => dispatch(errorEnrollCoupon(error)))
+    .then(() => LoadingProvider.unsetLoading(LOYALTY_COUPONS_ROUTE));
+
+  return request;
+};
+

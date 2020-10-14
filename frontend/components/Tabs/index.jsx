@@ -6,25 +6,27 @@ import { themeConfig } from '@shopgate/engage';
 
 const styles = {
   tabs: css({
-    borderBottom: `1px solid ${themeConfig.colors.shade3}`,
+    borderBottom: `1px solid ${themeConfig.colors.shade7}`,
     background: themeConfig.colors.light,
     boxShadow: `0px 1rem 0.5rem ${themeConfig.colors.light}`,
     marginBottom: '0.5rem',
     paddingTop: '0.5rem',
+    minHeight: 52,
   }).toString(),
   tabsSticky: css({
     top: 0,
     position: 'sticky',
-    zIndex: 5,
+    zIndex: 2,
   }).toString(),
   tab: css({
-    display: 'flex',
-    justifyContent: 'center',
+    height: '100%',
+    textAlign: 'center',
+    fontWeight: 500,
     padding: '0.5rem 0',
     borderBottom: '3px solid transparent',
   }).toString(),
   tabActive: css({
-    borderBottom: `3px solid ${themeConfig.colors.primary}`,
+    borderBottom: `3px solid ${themeConfig.colors.primary}!important`,
   }).toString(),
 };
 

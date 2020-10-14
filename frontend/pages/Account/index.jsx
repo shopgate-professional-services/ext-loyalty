@@ -6,10 +6,10 @@ import QRCode from 'qrcode.react';
 import { themeConfig } from '@shopgate/engage';
 import { useTheme, i18n } from '@shopgate/engage/core';
 import {
-  Route, Link, SurroundPortals, Grid, SheetList,
+  Route, Link, SurroundPortals, Grid, SheetList, BarcodeScannerIcon,
 } from '@shopgate/engage/components';
 import {
-  LOYALTY_COUPONS_ROUTE, LOYALTY_POINTS_HISTORY_ROUTE, LOYALTY_ROUTE,
+  LOYALTY_COUPONS_ROUTE, LOYALTY_POINTS_HISTORY_ROUTE, LOYALTY_ROUTE, SCANNER_ROUTE,
 } from '../../constants';
 import { barcodeFormat, showQrCodeInstead } from '../../config';
 import { withAccount } from '../../hocs';
@@ -82,7 +82,7 @@ const Account = ({ account }) => {
       <div className={styles.content}>
         <SurroundPortals portalName="ps-loyalty.account.points">
           <Card className={styles.card}>
-            <p className={styles.label}>{i18n.text('AKTUELLER PUNKTESTAND')}</p>
+            <p className={styles.label}>{i18n.text('ps_loyalty.account.balance')}</p>
 
             <div className={styles.points}>
               {account.points}
@@ -101,7 +101,7 @@ const Account = ({ account }) => {
             )}
 
             <div className={styles.label}>
-              {i18n.text('KARTENNUMMER')}
+              {i18n.text('ps_loyalty.account.cardNumber')}
             </div>
             <div><strong>{account.card.code}</strong></div>
           </Card>
@@ -115,7 +115,7 @@ const Account = ({ account }) => {
                   <DiscountIcon size={24} />
                 </Grid.Item>
                 <Grid.Item grow={1}>
-                  {i18n.text('Coupons')}
+                  {i18n.text('ps_loyalty.account.coupons')}
                 </Grid.Item>
               </Grid>
             </Link>
@@ -125,7 +125,17 @@ const Account = ({ account }) => {
                   <PointsHistoryIcon size={24} />
                 </Grid.Item>
                 <Grid.Item grow={1}>
-                  {i18n.text('Punkte Historie')}
+                  {i18n.text('ps_loyalty.account.pointsHistory')}
+                </Grid.Item>
+              </Grid>
+            </Link>
+            <Link href={SCANNER_ROUTE}>
+              <Grid className={styles.linkGrid}>
+                <Grid.Item shrink={0} className={styles.linkGridIcon}>
+                  <BarcodeScannerIcon size={24} />
+                </Grid.Item>
+                <Grid.Item grow={1}>
+                  {i18n.text('ps_loyalty.init_account.scan')}
                 </Grid.Item>
               </Grid>
             </Link>

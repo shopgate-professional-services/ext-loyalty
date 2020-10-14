@@ -57,7 +57,7 @@ const PointsHistory = ({ history, fetchPointsHistory }) => {
   useEffect(() => { fetchPointsHistory(); }, [fetchPointsHistory]);
 
   if (!history || !history.length) {
-    return <h2>{i18n.text('Noch keine Geschichte vorhanden')}</h2>;
+    return <h2>{i18n.text('ps_loyalty.history.noHistory')}</h2>;
   }
 
   return (
@@ -77,7 +77,9 @@ const PointsHistory = ({ history, fetchPointsHistory }) => {
               <Grid.Item grow={1}>
                 <div className={styles.name}>{historyItem.label}</div>
                 <div>
-                  <span className={types[historyItem.type]}>{i18n.text(historyItem.type)}</span>
+                  <span className={types[historyItem.type]}>
+                    {i18n.text(`ps_loyalty.history.${historyItem.type}`)}
+                  </span>
                   {' '}
                   <span>{i18n.text('ps_loyalty.history.date', { date: new Date(historyItem.date) })}</span>
                 </div>

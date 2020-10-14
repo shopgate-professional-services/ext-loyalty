@@ -11,6 +11,11 @@ import {
   REQUEST_LOYALTY_COUPONS,
   RECEIVE_LOYALTY_COUPONS,
   ERROR_LOYALTY_COUPONS,
+  REQUEST_LOYALTY_USER_COUPONS,
+  RECEIVE_LOYALTY_USER_COUPONS,
+  ERROR_LOYALTY_USER_COUPONS,
+  SUCCESS_LOYALTY_ENROLL_COUPON,
+  ERROR_LOYALTY_ENROLL_COUPON,
 } from './constants';
 
 /**
@@ -91,7 +96,7 @@ export const errorPointsHistory = () => ({
  * Request Coupons.
  * @returns {Object}
  */
-export const requestLoyaltyCoupons = () => ({
+export const requestCoupons = () => ({
   type: REQUEST_LOYALTY_COUPONS,
 });
 
@@ -105,10 +110,53 @@ export const receiveCoupons = payload => ({
   payload,
 });
 
-/**∂
+/**
  * Error Coupons.
  * @returns {Object}
  */
 export const errorCoupons = () => ({
   type: ERROR_LOYALTY_COUPONS,
 });
+
+/**
+ * Request Coupons.
+ * @returns {Object}
+ */
+export const requestUserCoupons = () => ({
+  type: REQUEST_LOYALTY_USER_COUPONS,
+});
+
+/**
+ * Receive Coupons.
+ * @param {Object} payload Payload.
+ * @returns {Object}
+ */
+export const receiveUserCoupons = payload => ({
+  type: RECEIVE_LOYALTY_USER_COUPONS,
+  payload,
+});
+
+/**
+ * Error Coupons.
+ * @returns {Object}
+ */
+export const errorUserCoupons = () => ({
+  type: ERROR_LOYALTY_USER_COUPONS,
+});
+
+/**
+ * @returns {Object}
+ */
+export const successEnrollCoupon = () => ({
+  type: SUCCESS_LOYALTY_ENROLL_COUPON,
+});
+
+/**
+ * @param {Error} error .
+ * @returns {Object}
+ */
+export const errorEnrollCoupon = error => ({
+  type: ERROR_LOYALTY_ENROLL_COUPON,
+  error,
+});
+
