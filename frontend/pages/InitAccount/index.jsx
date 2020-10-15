@@ -99,12 +99,12 @@ const InitAccount = () => {
         <IconLink
           href={SCANNER_ROUTE}
           icon={BarcodeScannerIcon}
-          label={i18n.text('ps_loyalty.ini_account.scan')}
+          label={i18n.text('ps_loyalty.init_account.scan')}
         />
         <IconLink
           href={SCANNER_ROUTE}
           icon={AccountBoxIcon}
-          label={i18n.text('ps_loyalty.ini_account.login')}
+          label={i18n.text('ps_loyalty.init_account.login')}
         />
       </div>
     </View>

@@ -6,7 +6,7 @@ import {
   LOYALTY_COUPONS_ROUTE,
   LOYALTY_POINTS_HISTORY_ROUTE,
   LOYALTY_ROUTE,
-  SCANNER_ROUTE
+  SCANNER_ROUTE,
 } from '../../constants';
 import Icon from '../../components/Icons/MenuBarIcon';
 import { addTabBarItem } from '../../config';

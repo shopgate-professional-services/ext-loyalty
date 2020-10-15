@@ -1,17 +1,13 @@
 import React, {
-  useEffect, useState, Fragment, useCallback,
+  useEffect, useState, Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import { themeConfig } from '@shopgate/engage';
 import { i18n } from '@shopgate/engage/core';
 import { Grid, RippleButton, SurroundPortals } from '@shopgate/engage/components';
-import Clickable from '../Clickable';
 import PopupBarcode from '../PopupBarcode';
 import Card from '../Card';
-import DiscountIcon from '../Icons/DiscountIcon';
-import CalendarIcon from '../Icons/CalendarIcon';
-import SmilyIcon from '../Icons/SmilyIcon';
 import { withFetchCoupons, withEnrollCoupon } from '../../hocs';
 
 const styles = {

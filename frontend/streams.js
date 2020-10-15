@@ -1,4 +1,4 @@
-import { main$, routeDidEnter$, routeDidLeave$ } from '@shopgate/pwa-common/streams';
+import { routeDidEnter$ } from '@shopgate/pwa-common/streams';
 import { SCANNER_PATH } from '@shopgate/pwa-common-commerce/scanner/constants';
 import {
   LOYALTY_COUPONS_ROUTE,
