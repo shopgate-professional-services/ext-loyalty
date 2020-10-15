@@ -32,7 +32,7 @@ const styles = {
   image: css({
     height: '115px',
     backgroundSize: 'cover',
-    borderRadius: '5px 5px 0 0',
+    borderRadius: '5px 0 0 0',
   }).toString(),
   button: css({
     '&&': {
@@ -50,7 +50,7 @@ const styles = {
     justifyContent: 'center',
     color: themeConfig.colors.light,
     background: themeConfig.colors.primary,
-    borderRadius: '0 11px 11px 0',
+    borderRadius: '0 5px 5px 0',
   }).toString(),
 };
 

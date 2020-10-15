@@ -20,6 +20,8 @@
     },
     "coupon": {
       "title": "Gutscheine",
+      "myCoupons": "Meine Gutscheine",
+      "enrollCoupons": "Punkte einlösen",
       "noCoupons": "Kein Gutscheine wurden gefunden",
       "enroll": "einlösen",
       "enrollError": "Nicht genügend Punkte",
