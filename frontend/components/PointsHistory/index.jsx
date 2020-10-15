@@ -8,10 +8,10 @@ import { withFetchPointsHistory } from '../../hocs';
 
 const types = {
   earned: css({
-    color: themeConfig.colors.primary,
+    color: themeConfig.colors.success,
   }),
   redeemed: css({
-    color: themeConfig.colors.accent,
+    color: themeConfig.colors.warning,
   }),
 };
 
