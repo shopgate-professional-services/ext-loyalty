@@ -11,7 +11,7 @@ const types = {
     color: themeConfig.colors.primary,
   }),
   redeemed: css({
-    color: themeConfig.colors.secondary || '#FFB800',
+    color: themeConfig.colors.accent,
   }),
 };
 

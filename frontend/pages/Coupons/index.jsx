@@ -20,10 +20,10 @@ export const Coupons = () => {
       <AppBar title="ps_loyalty.coupon.title" />
       <div className={styles.content}>
         <Tabs>
-          <Tab title={i18n.text('ps_loyalty.coupon.title')} key="coupons">
+          <Tab title={i18n.text('ps_loyalty.coupon.myCoupons')} key="coupons">
             <MyCoupons />
           </Tab>
-          <Tab title={i18n.text('ps_loyalty.coupon.enroll')} key="points">
+          <Tab title={i18n.text('ps_loyalty.coupon.enrollCoupons')} key="points">
             <RedeemCoupons />
           </Tab>
         </Tabs>
