@@ -20,7 +20,7 @@ import {
   receiveCoupons,
   errorCoupons,
   successEnrollCoupon,
-  errorEnrollCoupon,
+  errorEnrollCoupon, successEnrollPoints, errorEnrollPoints,
 } from './action-creators';
 
 /**
@@ -126,6 +126,25 @@ export const enrollCoupon = props => (dispatch) => {
     .then(() => dispatch(successEnrollCoupon(props)))
     .catch(error => dispatch(errorEnrollCoupon(error)))
     .then(() => LoadingProvider.unsetLoading(LOYALTY_COUPONS_ROUTE));
+
+  return request;
+};
+
+/**
+ * @param {Object} props .
+ * @returns {function(*): Promise}
+ */
+export const enrollPoints = props => (dispatch) => {
+  LoadingProvider.setLoading(LOYALTY_ROUTE);
+
+  const request = new PipelineRequest('shopgate-project.loyalty.enrollPoints')
+    .setInput(props)
+    .dispatch();
+
+  request
+    .then(() => dispatch(successEnrollPoints(props)))
+    .catch(error => dispatch(errorEnrollPoints(error)))
+    .then(() => LoadingProvider.unsetLoading(LOYALTY_ROUTE));
 
   return request;
 };

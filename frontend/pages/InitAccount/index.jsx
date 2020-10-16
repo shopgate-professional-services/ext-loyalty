@@ -1,10 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { css } from 'glamor';
+import { connect } from 'react-redux';
 import { useTheme, i18n } from '@shopgate/engage/core';
 import { themeConfig } from '@shopgate/engage';
 import {
   AccountBoxIcon, BarcodeScannerIcon, Grid, Route,
 } from '@shopgate/engage/components';
+import { isUserLoggedIn, LOGIN_PATH } from '@shopgate/engage/user';
 import { LOYALTY_INIT_ACCOUNT_ROUTE, SCANNER_ROUTE } from '../../constants';
 import DonationIcon from '../../components/Icons/DonationIcon';
 import CardIcon from '../../components/Icons/CardIcon';
@@ -50,9 +53,10 @@ const styles = {
 };
 
 /**
+ * @param {Object} params .
  * @returns {JSX}
  */
-const InitAccount = () => {
+const InitAccount = ({ isLoggedIn }) => {
   const { View, AppBar } = useTheme();
 
   return (
@@ -101,19 +105,38 @@ const InitAccount = () => {
           icon={BarcodeScannerIcon}
           label={i18n.text('ps_loyalty.init_account.scan')}
         />
-        <IconLink
-          href={SCANNER_ROUTE}
-          icon={AccountBoxIcon}
-          label={i18n.text('ps_loyalty.init_account.login')}
-        />
+        {isLoggedIn === false &&
+          <IconLink
+            href={LOGIN_PATH}
+            icon={AccountBoxIcon}
+            label={i18n.text('ps_loyalty.init_account.login')}
+          />
+        }
       </div>
     </View>
   );
 };
 
+InitAccount.propTypes = {
+  isLoggedIn: PropTypes.bool,
+};
+
+InitAccount.defaultProps = {
+  isLoggedIn: null,
+};
+
+/**
+ * Maps state to props.
+ * @param {Object} state State.
+ * @returns {Object}
+ */
+const mapStateToProps = state => ({
+  isLoggedIn: isUserLoggedIn(state),
+});
+
 export default () => (
   <Route
     pattern={LOYALTY_INIT_ACCOUNT_ROUTE}
-    component={InitAccount}
+    component={connect(mapStateToProps)(InitAccount)}
   />
 );

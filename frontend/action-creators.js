@@ -15,8 +15,8 @@ import {
   RECEIVE_LOYALTY_USER_COUPONS,
   ERROR_LOYALTY_USER_COUPONS,
   SUCCESS_LOYALTY_ENROLL_COUPON,
-  ERROR_LOYALTY_ENROLL_COUPON,
-} from './constants';
+  ERROR_LOYALTY_ENROLL_COUPON, SUCCESS_LOYALTY_ENROLL_POINTS, ERROR_LOYALTY_ENROLL_POINTS,
+} from './constants'
 
 /**
  * @returns {Object}
@@ -157,6 +157,22 @@ export const successEnrollCoupon = () => ({
  */
 export const errorEnrollCoupon = error => ({
   type: ERROR_LOYALTY_ENROLL_COUPON,
+  error,
+});
+
+/**
+ * @returns {Object}
+ */
+export const successEnrollPoints = () => ({
+  type: SUCCESS_LOYALTY_ENROLL_POINTS,
+});
+
+/**
+ * @param {Error} error .
+ * @returns {Object}
+ */
+export const errorEnrollPoints = error => ({
+  type: ERROR_LOYALTY_ENROLL_POINTS,
   error,
 });
 

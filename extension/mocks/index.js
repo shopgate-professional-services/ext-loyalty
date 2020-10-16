@@ -17,7 +17,13 @@ module.exports.accountInfo = {
   }
 }
 
-module.exports.coupons = [...Array(5).keys()].map(ind => ({
+module.exports.enrollPoints = {
+  label: 'Quittung gescannt',
+  image: 'https://picsum.photos/80',
+  value: 100
+}
+
+module.exports.coupons = [0, 1, 2, 3, 4].map(ind => ({
   code: `WINTER${ind * 10}`,
   label: 'Lorem ipsum dolor sit amet',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
@@ -30,7 +36,7 @@ module.exports.coupons = [...Array(5).keys()].map(ind => ({
   enrollPoints: Math.round(Math.random() * 1000)
 }))
 
-module.exports.userCoupons = [...Array(3).keys()].map(ind => ({
+module.exports.userCoupons = [6, 7, 8, 9].map(ind => ({
   code: `WINTER${ind * 10}`,
   label: 'Lorem ipsum dolor sit amet',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
@@ -42,7 +48,7 @@ module.exports.userCoupons = [...Array(3).keys()].map(ind => ({
   customAttributes: {}
 }))
 
-module.exports.pointsHistory = [...Array(10).keys()].map(ind => ({
+module.exports.pointsHistory = [0, 1, 2, 3, 4].map(ind => ({
   code: `WINTER${ind * 10}`,
   label: 'Lorem ipsum dolor sit amet',
   image: `https://picsum.photos/${80 + ind}`,

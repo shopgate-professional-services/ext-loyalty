@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { I18n } from '@shopgate/engage/components';
-import { useNavigation } from '@shopgate/engage/core/hooks/useNavigation';
-import connect from './connector';
+import { useNavigation } from '@shopgate/engage/core';
 import PointsIcon from '../Icons/MenuBarIcon';
 import { LOYALTY_ROUTE } from '../../constants';
 
@@ -15,12 +14,11 @@ const AccountItem = (props) => {
   const { push } = useNavigation();
 
   const {
-    isUserLoggedIn,
     Item,
     show,
   } = props;
 
-  if (!show || !isUserLoggedIn) {
+  if (!show) {
     return null;
   }
 
@@ -43,7 +41,6 @@ const AccountItem = (props) => {
 };
 
 AccountItem.propTypes = {
-  isUserLoggedIn: PropTypes.bool.isRequired,
   Item: PropTypes.func.isRequired,
   show: PropTypes.bool,
 };
@@ -52,4 +49,4 @@ AccountItem.defaultProps = {
   show: true,
 };
 
-export default connect(AccountItem);
+export default AccountItem;

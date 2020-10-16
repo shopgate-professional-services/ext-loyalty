@@ -1,0 +1,22 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.loyalty.enrollPoints.v1",
+    "public": true,
+    "input": [
+      { "key": "code", "id": "1" }
+    ],
+    "output": [],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate-project/loyalty",
+        "path": "@shopgate-project/loyalty/steps/enrollPoints.js",
+        "input": [
+          { "key": "code", "id": "1" }
+        ],
+        "output": []
+      }
+    ]
+  }
+}

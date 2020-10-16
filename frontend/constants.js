@@ -3,8 +3,10 @@ import { SCANNER_TYPE_BARCODE } from '@shopgate/pwa-core/constants/Scanner';
 
 // TODO: TYPE_QR CODE support needed in first version?
 
-export const SCANNER_SCOPE = 'shopgate-project-loyalty';
+export const SCANNER_SCOPE = 'sp-loyalty';
+export const SCANNER_SCOPE_POINTS = 'sp-loyalty-points';
 export const SCANNER_ROUTE = getScannerRoute(SCANNER_SCOPE, SCANNER_TYPE_BARCODE);
+export const SCANNER_ROUTE_POINTS = getScannerRoute(SCANNER_SCOPE_POINTS, SCANNER_TYPE_BARCODE);
 
 export const LOYALTY_ROUTE = '/loyalty';
 export const LOYALTY_INIT_ACCOUNT_ROUTE = '/loyalty/init';
@@ -34,4 +36,7 @@ export const ERROR_LOYALTY_USER_COUPONS = 'ERROR_LOYALTY_USER_COUPONS';
 
 export const SUCCESS_LOYALTY_ENROLL_COUPON = 'REQUEST_LOYALTY_ENROLL_COUPON';
 export const ERROR_LOYALTY_ENROLL_COUPON = 'ERROR_LOYALTY_ENROLL_COUPON';
+
+export const SUCCESS_LOYALTY_ENROLL_POINTS = 'SUCCESS_LOYALTY_ENROLL_POINTS';
+export const ERROR_LOYALTY_ENROLL_POINTS = 'ERROR_LOYALTY_ENROLL_POINTS';
 

@@ -3,30 +3,16 @@ import showModal from '@shopgate/pwa-common/actions/modal/showModal';
 import { scannerFinishedBarCode$, scannerFinishedQrCode$ } from '@shopgate/pwa-common-commerce/scanner/streams';
 import { historyPop, historyReplace } from '@shopgate/pwa-common/actions/router';
 import { hasScannerSupport } from '@shopgate/pwa-common/selectors/client';
-import { isUserLoggedIn, LOGIN_PATH, userDataReceived$ } from '@shopgate/engage/user';
-import { appDidStart$, authRoutes, redirects } from '@shopgate/engage/core';
-import { LOYALTY_INIT_ACCOUNT_ROUTE, LOYALTY_ROUTE, SCANNER_SCOPE } from './constants';
+import { isUserLoggedIn, userDataReceived$ } from '@shopgate/engage/user';
+import { LOYALTY_ROUTE, SCANNER_SCOPE, SCANNER_SCOPE_POINTS } from './constants';
 import { scannerDidEnter$ } from './streams';
-import { fetchAccountInfo, initAccount } from './actions';
-import { getAccountInfo } from './selectors';
+import { fetchAccountInfo, initAccount, enrollPoints } from './actions';
 
 /**
  * Subscription.
  * @param {Function} subscribe Subscribe.
  */
 export default (subscribe) => {
-  subscribe(appDidStart$, () => {
-    authRoutes.set(LOYALTY_ROUTE, LOGIN_PATH);
-
-    redirects.set(LOYALTY_ROUTE, ({ getState }) => {
-      const account = getAccountInfo(getState());
-      if (!account) {
-        return LOYALTY_INIT_ACCOUNT_ROUTE;
-      }
-      return LOYALTY_ROUTE;
-    });
-  });
-
   subscribe(userDataReceived$, ({ dispatch, getState }) => {
     const loggedIn = isUserLoggedIn(getState());
     if (!loggedIn) {
@@ -54,6 +40,7 @@ export default (subscribe) => {
    */
   const scannerFinished$ = scannerFinishedBarCode$
     .filter(({ action }) => action.scope === SCANNER_SCOPE);
+
   subscribe(scannerFinished$, ({ action, dispatch }) => {
     const { payload } = action;
     dispatch(initAccount({
@@ -65,6 +52,23 @@ export default (subscribe) => {
           pathname: LOYALTY_ROUTE,
         })))
     ));
+  });
+
+  const scannerFinishedPoints$ = scannerFinishedBarCode$
+    .filter(({ action }) => action.scope === SCANNER_SCOPE_POINTS);
+  subscribe(scannerFinishedPoints$, ({ action, dispatch }) => {
+    const { payload } = action;
+    dispatch(enrollPoints({ code: payload }))
+      .then(() => (
+        dispatch(fetchAccountInfo())
+          .then(() => dispatch(historyReplace({ pathname: LOYALTY_ROUTE })))
+      )).catch(() => {
+        dispatch(showModal({
+          confirm: 'modal.ok',
+          dismiss: null,
+          message: 'ps_loyalty.scanner.errorEnrollPoints',
+        })).then(() => Scanner.start());
+      });
   });
 
   subscribe(scannerDidEnter$, ({ getState, dispatch }) => {

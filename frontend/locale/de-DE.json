@@ -7,7 +7,8 @@
       "balance": "AKTUELLER PUNKTESTAND",
       "cardNumber": "KARTENNUMMER",
       "coupons": "Gutscheine",
-      "pointsHistory": "Punkte Historie"
+      "pointsHistory": "Punkte Historie",
+      "scanPoints": "Quittung scannen (Punkte einlösen)"
     },
     "init_account": {
       "intro": "Bitte melde dich für unseren Treupunkte bereich an.",
@@ -41,7 +42,8 @@
     },
     "scanner": {
       "invalid_format": "Ungültiges Format. Bitte scannen Sie einen validen Barcode.",
-      "not_supported": "Um den Kartenscanner zu benutzen, müssen Sie Ihre App aktualisieren."
+      "not_supported": "Um den Kartenscanner zu benutzen, müssen Sie Ihre App aktualisieren.",
+      "errorEnrollPoints": "Punkte könnten nicht einlösen werden"
     }
   }
 }

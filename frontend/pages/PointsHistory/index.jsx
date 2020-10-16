@@ -10,6 +10,9 @@ import DiscountIcon from '../../components/Icons/DiscountIcon';
 import { withAccount } from '../../hocs';
 
 const styles = {
+  content: css({
+    position: 'relative',
+  }),
   header: css({
     color: themeConfig.colors.light,
     background: themeConfig.colors.primary,
@@ -18,6 +21,9 @@ const styles = {
     fontSize: '1.125rem',
     display: 'flex',
     alignItems: 'center',
+    top: 0,
+    position: 'sticky',
+    zIndex: 2,
   }).toString(),
   history: css({
     padding: '1rem',
@@ -43,24 +49,26 @@ const PointsHistory = ({ account }) => {
   return (
     <View>
       <AppBar title="ps_loyalty.history.title" />
-      <SurroundPortals portalName="ps-loyalty.points-history.header">
-        <Grid className={styles.header}>
-          <Grid.Item shrink={0} className={styles.headerIcon}>
-            <DiscountIcon size={24} />
-          </Grid.Item>
-          <Grid.Item grow={1}>
-            {i18n.text('ps_loyalty.history.balance')}
-          </Grid.Item>
-          <Grid.Item shrink={0} className={styles.headerPoints}>
-            {!!account && account.points}
-          </Grid.Item>
-        </Grid>
-      </SurroundPortals>
-      <SurroundPortals portalName="ps-loyalty.points-history.list">
-        <div className={styles.history}>
-          <PointsHistoryList />
-        </div>
-      </SurroundPortals>
+      <div className={styles.content}>
+        <SurroundPortals portalName="ps-loyalty.points-history.header">
+          <Grid className={styles.header}>
+            <Grid.Item shrink={0} className={styles.headerIcon}>
+              <DiscountIcon size={24} />
+            </Grid.Item>
+            <Grid.Item grow={1}>
+              {i18n.text('ps_loyalty.history.balance')}
+            </Grid.Item>
+            <Grid.Item shrink={0} className={styles.headerPoints}>
+              {!!account && account.points}
+            </Grid.Item>
+          </Grid>
+        </SurroundPortals>
+        <SurroundPortals portalName="ps-loyalty.points-history.list">
+          <div className={styles.history}>
+            <PointsHistoryList />
+          </div>
+        </SurroundPortals>
+      </div>
     </View>
   );
 };
