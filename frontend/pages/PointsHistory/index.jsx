@@ -24,6 +24,8 @@ const styles = {
     top: 0,
     position: 'sticky',
     zIndex: 2,
+    boxShadow: `0px 1rem 0.5rem ${themeConfig.colors.light}`,
+    marginBottom: '0.25rem',
   }).toString(),
   history: css({
     padding: '1rem',

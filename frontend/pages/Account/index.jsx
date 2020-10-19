@@ -124,16 +124,6 @@ const Account = ({ account, fetchAccountInfo }) => {
                       </Grid.Item>
                     </Grid>
                   </Link>
-                  <Link href={LOYALTY_POINTS_HISTORY_ROUTE}>
-                    <Grid className={styles.linkGrid}>
-                      <Grid.Item shrink={0} className={styles.linkGridIcon}>
-                        <PointsHistoryIcon size={24} />
-                      </Grid.Item>
-                      <Grid.Item grow={1}>
-                        {i18n.text('ps_loyalty.account.pointsHistory')}
-                      </Grid.Item>
-                    </Grid>
-                  </Link>
                   <Link href={SCANNER_ROUTE_POINTS}>
                     <Grid className={styles.linkGrid}>
                       <Grid.Item shrink={0} className={styles.linkGridIcon}>
@@ -144,13 +134,23 @@ const Account = ({ account, fetchAccountInfo }) => {
                       </Grid.Item>
                     </Grid>
                   </Link>
+                  <Link href={LOYALTY_POINTS_HISTORY_ROUTE}>
+                    <Grid className={styles.linkGrid}>
+                      <Grid.Item shrink={0} className={styles.linkGridIcon}>
+                        <PointsHistoryIcon size={24} />
+                      </Grid.Item>
+                      <Grid.Item grow={1}>
+                        {i18n.text('ps_loyalty.account.pointsHistory')}
+                      </Grid.Item>
+                    </Grid>
+                  </Link>
                   <Link href={SCANNER_ROUTE}>
                     <Grid className={styles.linkGrid}>
                       <Grid.Item shrink={0} className={styles.linkGridIcon}>
                         <BarcodeScannerIcon size={24} />
                       </Grid.Item>
                       <Grid.Item grow={1}>
-                        {i18n.text('ps_loyalty.init_account.scan')}
+                        {i18n.text('ps_loyalty.init_account.reScan')}
                       </Grid.Item>
                     </Grid>
                   </Link>

@@ -17,6 +17,7 @@
       "bonuses": "Exklusive Rabattaktionen",
       "points": "Punkte sammeln und einlösen",
       "scan": "Treuekarte scannen",
+      "reScan": "Treuekarte wiederscannen",
       "login": "Einloggen"
     },
     "coupon": {
@@ -43,7 +44,8 @@
     "scanner": {
       "invalid_format": "Ungültiges Format. Bitte scannen Sie einen validen Barcode.",
       "not_supported": "Um den Kartenscanner zu benutzen, müssen Sie Ihre App aktualisieren.",
-      "errorEnrollPoints": "Punkte könnten nicht einlösen werden"
+      "errorEnrollPoints": "Punkte könnten nicht einlösen werden",
+      "enrollPointsSuccess": "Punkte wurden eingelöst"
     }
   }
 }

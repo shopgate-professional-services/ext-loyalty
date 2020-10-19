@@ -13,6 +13,7 @@ import DiscountIcon from '../Icons/DiscountIcon';
 import CalendarIcon from '../Icons/CalendarIcon';
 import SmilyIcon from '../Icons/SmilyIcon';
 import { withFetchUserCoupons, withAddCouponsToCart } from '../../hocs';
+import { addCouponToCart } from '../../config';
 
 momentDurationFormatSetup(moment);
 
@@ -108,13 +109,16 @@ const CouponList = ({ coupons, fetchUserCoupons, addCouponsToCart }) => {
           <li key={coupon.code} className={styles.listItem}>
             <SurroundPortals portalName="ps-loyalty.coupons.coupon-item" portalProps={{ coupon }}>
               <Card notch>
-                <div className={`${styles.addToCart} ${coupon.image ? styles.addToCartStick : ''}`}>
-                  <AddToCartButton
-                    onClick={() => addCoupon(coupon)}
-                    isDisabled={false}
-                    isLoading={false}
-                  />
-                </div>
+                {addCouponToCart &&
+                  <div className={`${styles.addToCart} ${coupon.image ? styles.addToCartStick : ''}`}>
+                    <AddToCartButton
+                      onClick={() => addCoupon(coupon)}
+                      isDisabled={false}
+                      isLoading={false}
+                      noShadow
+                    />
+                  </div>
+                }
 
                 <Clickable onClick={() => setPopupBarCode(coupon.code)}>
                   {coupon.image &&

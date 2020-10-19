@@ -107,6 +107,29 @@
         "type": "checkbox",
         "label": "Adds loyalty link to TabBar"
       }
+    },
+    "addCouponToCart": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": true,
+      "params": {
+        "type": "checkbox",
+        "label": "Show add to cart button or not"
+      }
+    },
+    "styles": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": {
+        "pointsHistory": {
+          "earned": null,
+          "redeemed": null
+        }
+      },
+      "params": {
+        "type": "json",
+        "label": "Styles for elements"
+      }
     }
   },
   "steps": []

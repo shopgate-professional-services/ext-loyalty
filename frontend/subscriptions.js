@@ -1,12 +1,12 @@
 import Scanner from '@shopgate/pwa-core/classes/Scanner';
 import showModal from '@shopgate/pwa-common/actions/modal/showModal';
 import { scannerFinishedBarCode$, scannerFinishedQrCode$ } from '@shopgate/pwa-common-commerce/scanner/streams';
-import { historyPop, historyReplace } from '@shopgate/pwa-common/actions/router';
 import { hasScannerSupport } from '@shopgate/pwa-common/selectors/client';
 import { isUserLoggedIn, userDataReceived$ } from '@shopgate/engage/user';
+import { ToastProvider, historyPop, historyReplace } from '@shopgate/engage/core';
 import { LOYALTY_ROUTE, SCANNER_SCOPE, SCANNER_SCOPE_POINTS } from './constants';
 import { scannerDidEnter$ } from './streams';
-import { fetchAccountInfo, initAccount, enrollPoints } from './actions';
+import { enrollPoints, fetchAccountInfo, initAccount } from './actions';
 
 /**
  * Subscription.
@@ -56,12 +56,17 @@ export default (subscribe) => {
 
   const scannerFinishedPoints$ = scannerFinishedBarCode$
     .filter(({ action }) => action.scope === SCANNER_SCOPE_POINTS);
-  subscribe(scannerFinishedPoints$, ({ action, dispatch }) => {
+  subscribe(scannerFinishedPoints$, ({ action, dispatch, events }) => {
     const { payload } = action;
     dispatch(enrollPoints({ code: payload }))
       .then(() => (
         dispatch(fetchAccountInfo())
-          .then(() => dispatch(historyReplace({ pathname: LOYALTY_ROUTE })))
+          .then(() => {
+            events.emit(ToastProvider.ADD, {
+              message: 'ps_loyalty.scanner.enrollPointsSuccess',
+            });
+            dispatch(historyReplace({ pathname: LOYALTY_ROUTE }));
+          })
       )).catch(() => {
         dispatch(showModal({
           confirm: 'modal.ok',

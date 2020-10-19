@@ -5,13 +5,17 @@ import { themeConfig } from '@shopgate/engage';
 import { Grid, SurroundPortals } from '@shopgate/engage/components';
 import { i18n } from '@shopgate/engage/core/helpers/i18n';
 import { withFetchPointsHistory } from '../../hocs';
+import { styles as configStyles } from '../../config';
 
+const { pointsHistory: { earned, redeemed } = {} } = configStyles;
 const types = {
   earned: css({
-    color: themeConfig.colors.success,
+    color: themeConfig.colors.primary,
+    ...earned,
   }),
   redeemed: css({
-    color: themeConfig.colors.warning,
+    color: '#FFB800',
+    ...redeemed,
   }),
 };
 
