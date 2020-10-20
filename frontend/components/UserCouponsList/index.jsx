@@ -26,7 +26,7 @@ const styles = {
   }),
   info: css({
     margin: '1.5rem 0',
-    padding: '0 1rem',
+    padding: '0 1.5rem',
   }).toString(),
   name: css({
     fontWeight: 500,
@@ -116,6 +116,7 @@ const CouponList = ({ coupons, fetchUserCoupons, addCouponsToCart }) => {
                       isDisabled={false}
                       isLoading={false}
                       noShadow
+                      buttonSize={50}
                     />
                   </div>
                 }

@@ -27,7 +27,7 @@ const styles = {
     paddingRight: '1rem',
   }).toString(),
   name: css({
-    fontWeight: 500,
+    fontWeight: 600,
     margin: '0 0 0.25rem',
   }).toString(),
   image: css({
@@ -35,10 +35,13 @@ const styles = {
     width: '38px',
     backgroundSize: 'cover',
   }),
+  dates: css({
+    color: themeConfig.colors.shade3,
+  }).toString(),
   points: {
     earned: css(types.earned, {
       paddingLeft: '1rem',
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
       display: 'flex',
       alignItems: 'center',
     }).toString(),
@@ -46,7 +49,7 @@ const styles = {
       paddingLeft: '1rem',
       display: 'flex',
       alignItems: 'center',
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
       '&&:before': {
         content: '-',
       },
@@ -85,7 +88,7 @@ const PointsHistory = ({ history, fetchPointsHistory }) => {
                     {i18n.text(`ps_loyalty.history.${historyItem.type}`)}
                   </span>
                   {' '}
-                  <span>{i18n.text('ps_loyalty.history.date', { date: new Date(historyItem.date) })}</span>
+                  <span className={styles.dates}>{i18n.text('ps_loyalty.history.date', { date: new Date(historyItem.date) })}</span>
                 </div>
               </Grid.Item>
               <Grid.Item shrink={0} className={styles.points[historyItem.type]}>

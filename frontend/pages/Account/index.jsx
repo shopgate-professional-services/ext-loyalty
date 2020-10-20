@@ -26,7 +26,7 @@ const styles = {
   }),
   card: css({
     margin: '1rem 0',
-    padding: '1rem 0',
+    padding: '1rem 2rem',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
@@ -41,6 +41,7 @@ const styles = {
   points: css({
     margin: '1rem 0',
     fontSize: '4rem',
+    fontWeight: 600,
     color: themeConfig.colors.primary,
   }),
   menu: css({
