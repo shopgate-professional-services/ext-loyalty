@@ -6,6 +6,7 @@ import {
   LOYALTY_COUPONS_ROUTE,
   LOYALTY_POINTS_HISTORY_ROUTE,
   LOYALTY_ROUTE,
+  LOYALTY_INIT_ACCOUNT_ROUTE,
   SCANNER_ROUTE,
 } from '../../constants';
 import Icon from '../../components/Icons/MenuBarIcon';
@@ -46,6 +47,7 @@ const TabBarItem = ({ path, TabBarAction }) => {
       icon={<Icon className={tabItemIconStyle} />}
       isHighlighted={[
         LOYALTY_ROUTE,
+        LOYALTY_INIT_ACCOUNT_ROUTE,
         LOYALTY_POINTS_HISTORY_ROUTE,
         LOYALTY_COUPONS_ROUTE,
         SCANNER_ROUTE,
